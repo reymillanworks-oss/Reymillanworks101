@@ -1097,5 +1097,84 @@ RHOSTS =&gt; 192.168.56.101
       }, 2000);
     }
   </script>
+
+<!-- ===== TERMUX LAB FULL - START ===== -->
+<section id="termux-lab-full" class="max-w-6xl mx-auto px-4 py-12">
+  <p class="text-xs tracking-[0.3em] text-emerald-400 font-mono">FEATURED SOC CASE STUDY 02 - FULL REPORT</p>
+  <h2 class="text-3xl md:text-4xl font-bold mt-2">🛡️ Home Lab: Termux + Ubuntu Hardening + ModSecurity WAF</h2>
+  <p class="text-gray-400 mt-3">I built this at home using my personal phone. From Termux base setup to Ubuntu lab, Apache hardening, Lynis audit, and ModSecurity WAF blocking - all done by me on my own device, own network, and own server. Target: 127.0.0.1 - My Own Server Only. No external target.</p>
+
+  <!-- SUMMARY BOXES -->
+  <div class="grid md:grid-cols-4 gap-4 mt-6">
+    <div class="bg-zinc-900 border border-zinc-800 rounded-xl p-4"><p class="text-xs text-gray-400">HARDENING INDEX</p><p class="text-2xl font-bold text-emerald-400 mt-1">59 → 60</p><p class="text-xs text-gray-500 mt-1">Lynis 3.0.9 • 242 Tests</p></div>
+    <div class="bg-zinc-900 border border-zinc-800 rounded-xl p-4"><p class="text-xs text-gray-400">NIKTO SCAN</p><p class="text-2xl font-bold text-emerald-400 mt-1">4 → 0 Critical</p><p class="text-xs text-gray-500 mt-1">6544 items checked</p></div>
+    <div class="bg-zinc-900 border border-zinc-800 rounded-xl p-4"><p class="text-xs text-gray-400">WAF TEST</p><p class="text-2xl font-bold text-emerald-400 mt-1">200 → 403</p><p class="text-xs text-gray-500 mt-1">Normal Allowed, XSS Blocked</p></div>
+    <div class="bg-zinc-900 border border-zinc-800 rounded-xl p-4"><p class="text-xs text-gray-400">CLAMAV</p><p class="text-2xl font-bold text-emerald-400 mt-1">3.6M+ Sigs</p><p class="text-xs text-gray-500 mt-1">Termux Native Antivirus</p></div>
+  </div>
+
+  <!-- PHASE 1 -->
+  <div class="bg-zinc-900 border border-zinc-800 rounded-xl p-5 mt-6">
+    <h3 class="font-bold text-lg">PHASE 1 - Termux Base Setup - 100% DONE</h3>
+    <p class="text-gray-400 text-sm mt-2">I cleaned and prepared Termux. I ran: pkg update && pkg upgrade, termux-setup-storage, pkg install git python curl wget nano vim openssh tmux proot-distro termux-api, mkdir -p ~/labs ~/tools ~/notes ~/wordlists</p>
+    <p class="text-gray-300 text-sm mt-2 font-mono">Verification: Termux:API 0.60.0, Battery 66% GOOD 38.0C, WiFi IP 192.168.100.49, 5GHz 5180 MHz, 325 Mbps. Folders created Nov 8 11:37.</p>
+  </div>
+
+  <!-- PHASE 2 -->
+  <div class="bg-zinc-900 border border-zinc-800 rounded-xl p-5 mt-4">
+    <h3 class="font-bold text-lg">PHASE 2 - Ubuntu Lab Installation - 100% DONE</h3>
+    <p class="text-gray-400 text-sm mt-2">Problem 1: proot-distro install kali failed - Unauthorized: kali does not exist. Fix: I switched to Ubuntu 24.04, more stable on mobile.</p>
+    <p class="text-gray-400 text-sm mt-1">Problem 2: apt update failed - Connection failed ports.ubuntu.com. Diagnosis: My Proton VPN was ON, proot cannot route through VPN tunnel. Fix: I turned OFF VPN temporarily, fetched 35.8 MB in 9s.</p>
+    <p class="text-gray-400 text-sm mt-1">Problem 3: Stuck at 61% Configuring tzdata. Fix: I selected 5. Asia then 52. Manila. Timezone Asia/Manila.</p>
+    <p class="text-gray-300 text-sm mt-2 font-mono">Installed: nmap, net-tools, dnsutils, curl, git, python3, tcpdump, whois, iputils-ping. Verified: Nmap 7.94SVN, Ubuntu 24.04, 27.6 MiB, root@localhost.</p>
+  </div>
+
+  <!-- PHASE 2.5 -->
+  <div class="bg-zinc-900 border border-zinc-800 rounded-xl p-5 mt-4">
+    <h3 class="font-bold text-lg">PHASE 2.5 - Strengthening Termux Native - 100% DONE</h3>
+    <p class="text-gray-400 text-sm mt-2">Problem: pkg install tcpdump failed - Unable to locate package. Diagnosis: tcpdump needs root, not in normal repo. Fix: I used tcpdump inside Ubuntu only.</p>
+    <p class="text-gray-400 text-sm mt-1">Problem: Nested tmux + nested proot - sessions should be nested with care. Fix: I exited all, ran tmux kill-server, rule: In Termux use lab command, in Ubuntu use apt/nmap/nikto/lynis only.</p>
+    <p class="text-gray-300 text-sm mt-2 font-mono">Verified: Nmap 7.993 in Termux (newer than Ubuntu 7.94), htop 3.5.3, ClamAV 1.5.4, freshclam daily 28176 sigs 355854, main 63 sigs 3287027, bytecode 339 sigs 80 = 3.6M+ total. Aliases: lab, myip, scanme.</p>
+  </div>
+
+  <!-- PHASE 3 -->
+  <div class="bg-zinc-900 border border-zinc-800 rounded-xl p-5 mt-4">
+    <h3 class="font-bold text-lg">PHASE 3 - My Own Legal Target + First Scan - 100% DONE</h3>
+    <p class="text-gray-400 text-sm mt-2">I built my own Apache server: apt install apache2, service apache2 start.</p>
+    <p class="text-gray-400 text-sm mt-1">Problem: nmap 127.0.0.1 failed - failed to determine route. Fix: I used nmap -Pn -sT -p 80 127.0.0.1. Problem: ss not found. Fix: apt install iproute2 net-tools.</p>
+    <p class="text-gray-300 text-sm mt-2 font-mono">Verified: curl HTTP/1.1 200 OK Server Apache/2.4.58, nmap 80/tcp open http, Host is up 0.00057s. Note: Cannot open netlink socket Permission denied is normal in proot.</p>
+  </div>
+
+  <!-- PHASE 4 -->
+  <div class="bg-zinc-900 border border-zinc-800 rounded-xl p-5 mt-4">
+    <h3 class="font-bold text-lg">PHASE 4 - Nikto Scan + Apache Hardening - 100% DONE</h3>
+    <p class="text-gray-400 text-sm mt-2">Installed: gobuster 3.6.0, nikto 2.1.5. First scan: 6544 items, 32s, 4 findings.</p>
+    <p class="text-sm mt-2"><span class="text-red-400">BEFORE:</span> <span class="text-gray-300">ETag Leak, X-Frame-Options Not Present, /server-status Reveals Apache, Allowed Methods GET POST OPTIONS HEAD</span></p>
+    <p class="text-sm mt-1"><span class="text-emerald-400">FIX I DID:</span> <span class="text-gray-300">a2enmod headers, nano apache2.conf added ServerTokens Prod, ServerSignature Off, FileETag None, Header X-Frame-Options SAMEORIGIN, Header X-Content-Type-Options nosniff, a2dismod status, service apache2 restart [ OK ]</span></p>
+    <p class="text-sm mt-1"><span class="text-emerald-400">AFTER:</span> <span class="text-gray-300">x-frame-options SAMEORIGIN, x-content-type-options nosniff, No CGI, ETag GONE, server-status GONE. Saved to nikto-first-scan.txt and nikto-after-hardening.txt</span></p>
+  </div>
+
+  <!-- PHASE 5 -->
+  <div class="bg-zinc-900 border border-zinc-800 rounded-xl p-5 mt-4">
+    <h3 class="font-bold text-lg">PHASE 5 - Lynis Audit - 59 → 60</h3>
+    <p class="text-gray-400 text-sm mt-2">I ran lynis audit system --quick. Lynis 3.0.9, Ubuntu 24.04, Kernel 6.17.0, 242 Tests. First Hardening Index: 59. Warnings 3: PKGS-7381 No vuln DB, PKGS-7388 No security repo, LOGG-2138 klogd not running (normal in proot). Suggestions 43.</p>
+    <p class="text-gray-400 text-sm mt-1">Ignored as not applicable in proot: AppArmor, SELinux, USB, Firewire, kernel.perf_event, separate partitions. Exceptions normal in proot: GetHostID, PKGS-7410, SSH-7404, Permission denied /proc/net/route.</p>
+    <p class="text-gray-300 text-sm mt-2 font-mono">Fixes I did: echo Authorized access only > /etc/issue and /etc/issue.net (WEAK → OK), chmod 700 /etc/cron.d /etc/cron.daily (SUGGESTION → OK), cp lynis.log to ~/notes. Firewall [X] normal in proot, Malware [V] ClamAV present, SSL 0/123 expired NONE.</p>
+  </div>
+
+  <!-- PHASE 6 -->
+  <div class="bg-zinc-900 border border-zinc-800 rounded-xl p-5 mt-4">
+    <h3 class="font-bold text-lg">PHASE 6 - ModSecurity WAF - DetectionOnly → On, 200 → 403 BLOCKED</h3>
+    <p class="text-gray-400 text-sm mt-2">Installed: libapache2-mod-security2 2.9.7, CRS 3.3.5, security2_module. Initial test: Normal 200, XSS 200 - Not blocked. Diagnosis: SecRuleEngine DetectionOnly - like CCTV, logs but not block.</p>
+    <p class="text-gray-400 text-sm mt-1">Problem: modsecurity.conf was blank. Fix: cp modsecurity.conf-recommended to modsecurity.conf. Fix: sed SecRuleEngine DetectionOnly → On, service apache2 restart [ OK ].</p>
+    <p class="text-gray-300 text-sm mt-2 font-mono">Final test: Normal 200, XSS 403 BLOCKED. Log: Rule 941160 NoScript XSS InjectionChecker, Matched <script> in ARGS:test, Severity CRITICAL, Inbound Anomaly Score 18 (Limit 5), Breakdown SQLi=0 XSS=15 RFI=0 LFI=0 RCE=0, Action Intercepted phase 2, Engine-Mode ENABLED, Producer ModSecurity 2.9.7 OWASP_CRS 3.3.5. Second Lynis: 60.</p>
+  </div>
+
+  <div class="flex flex-wrap gap-3 mt-5">
+    <a href="termux-lab.json" target="_blank" class="bg-emerald-500 text-black px-4 py-2 rounded-lg text-sm font-semibold">View Full Lab Report (JSON) - Complete Details</a>
+    <a href="#termux-lab-full" class="border border-zinc-700 px-4 py-2 rounded-lg text-sm">Evidence: ~/notes/ - 5 Reports Saved</a>
+  </div>
+  <p class="text-xs text-gray-500 mt-4">Evidence files: nikto-first-scan.txt, nikto-after-hardening.txt, lynis-first-audit.log 427K, lynis-first-report.dat 34K, modsecurity-blocked-xss.log, waf-test.txt. My reflection: I did not just install tools. I scanned, found, fixed, re-scanned, read logs, understood anomaly score 18 XSS 15. This is what SOC analyst does daily.</p>
+</section>
+<!-- ===== TERMUX LAB FULL - END ===== -->
 </body>
 </html>
