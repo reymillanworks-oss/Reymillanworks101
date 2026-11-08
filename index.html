@@ -1166,7 +1166,7 @@ RHOSTS =&gt; 192.168.56.101
     <h3 class="font-bold text-lg">PHASE 6 - ModSecurity WAF - DetectionOnly → On, 200 → 403 BLOCKED</h3>
     <p class="text-gray-400 text-sm mt-2">Installed: libapache2-mod-security2 2.9.7, CRS 3.3.5, security2_module. Initial test: Normal 200, XSS 200 - Not blocked. Diagnosis: SecRuleEngine DetectionOnly - like CCTV, logs but not block.</p>
     <p class="text-gray-400 text-sm mt-1">Problem: modsecurity.conf was blank. Fix: cp modsecurity.conf-recommended to modsecurity.conf. Fix: sed SecRuleEngine DetectionOnly → On, service apache2 restart [ OK ].</p>
-    <p class="text-gray-300 text-sm mt-2 font-mono">Final test: Normal 200, XSS 403 BLOCKED. Log: Rule 941160 NoScript XSS InjectionChecker, Matched <script> in ARGS:test, Severity CRITICAL, Inbound Anomaly Score 18 (Limit 5), Breakdown SQLi=0 XSS=15 RFI=0 LFI=0 RCE=0, Action Intercepted phase 2, Engine-Mode ENABLED, Producer ModSecurity 2.9.7 OWASP_CRS 3.3.5. Second Lynis: 60.</p>
+    <p class="text-gray-300 text-sm mt-2 font-mono">Final test: Normal 200, XSS 403 BLOCKED. Log: Rule 941160 NoScript XSS InjectionChecker, Matched &lt;script&gt; in ARGS:test, Severity CRITICAL, Inbound Anomaly Score 18 (Limit 5), Breakdown SQLi=0 XSS=15 RFI=0 LFI=0 RCE=0, Action Intercepted phase 2, Engine-Mode ENABLED, Producer ModSecurity 2.9.7 OWASP_CRS 3.3.5. Second Lynis: 60.</p>
   </div>
 
   <div class="flex flex-wrap gap-3 mt-5">
